@@ -9,25 +9,25 @@ const inter = Inter({ subsets: ["latin"] });
 
 // collect all the blogdata from the blog data directroy
 //ś
-export default function blogs() {
-    const isMounted = useRef(false);
+export default function blogs(props) {
+    // const isMounted = useRef(false);
 
-    const [blog, setblogs] = useState([]);
+    const [blog, setblogs] = useState(props.data);
 
-    useEffect(() => {
-        if (!isMounted.current) {
-            // This code will run only once after initial mount
-            console.log("useEffect is running");
-            fetch('http://localhost:3000/api/blogs')
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    setblogs(data)
-                });
+    // useEffect(() => {
+    //     if (!isMounted.current) {
+    //         // This code will run only once after initial mount
+    //         console.log("useEffect is running");
+    //         fetch('http://localhost:3000/api/blogs')
+    //             .then(response => response.json())
+    //             .then(data => {
+    //                 console.log(data);
+    //                 setblogs(data)
+    //             });
 
-            isMounted.current = true;
-        }
-    }, []);
+    //         isMounted.current = true;
+    //     }
+    // }, []);
 
     return (
         <main className={`${styles.main} ${inter.className}`}>
@@ -43,4 +43,13 @@ export default function blogs() {
             </div>
         </main>
     );
+ 
 }
+export async function getServerSideProps() {
+    // Fetch data from external API
+    const res = await fetch(`http://localhost:3000/api/blogs`)
+    const data = await res.json()
+   
+    // Pass data to the page via props
+    return { props: { data } }
+  }
