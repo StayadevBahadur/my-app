@@ -1,0 +1,12 @@
+.blogsContainer{
+    margin: 2rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
+  }
+  .blogItem{
+    margin: 1rem;
+  }
+  .Hmargin{
+    margin-bottom: 1rem;
+    padding: 0;
+  }
