@@ -43,6 +43,8 @@ export default function Slug(props) {
     );
 }
 export async function getServerSideProps(context) {
+    // this is next js's inbuild function 
+    // this function returns props 
     // console.log(context.query)
     // const router = useRouter();
     const { slug } = context.query;
